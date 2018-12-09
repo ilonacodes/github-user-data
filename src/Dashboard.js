@@ -1,6 +1,6 @@
 import React from 'react';
 import {Formik} from 'formik';
-import './dashboard.css'
+import './dashboard.css';
 import * as Yup from 'yup';
 import {actions} from './actions';
 import {connect} from 'react-redux';
@@ -35,7 +35,7 @@ class DashboardComponent extends React.Component {
                         } = props;
                         return (
                             <form onSubmit={handleSubmit}>
-                                <label htmlFor="name">GitHub Name</label>
+                                <label htmlFor="name"><b>GitHub Name</b></label>
                                 <input
                                     id="name"
                                     placeholder="Enter your username"
@@ -45,7 +45,7 @@ class DashboardComponent extends React.Component {
                                     onBlur={handleBlur}
                                     className={errors.name && touched.name ? 'error' : ''}
                                 />
-                                {errors.name && errors.touched && <div>{errors.name}</div>}
+                                {errors.name && errors.touched && <div className="input-feedback">{errors.name}</div>}
                                 <button
                                     type="button"
                                     className="outline"
@@ -58,10 +58,12 @@ class DashboardComponent extends React.Component {
                                     Submit
                                 </button>
                             </form>
-                        )
+                        );
                     }}
                 </Formik>
-                {JSON.stringify(this.props.user, null, 2)}
+                <div className="output">
+                    {JSON.stringify(this.props.user, null, 2)}
+                </div>
             </div>
         );
     }
@@ -70,13 +72,13 @@ class DashboardComponent extends React.Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         loadUserData: name => dispatch(actions.loadUserData(name))
-    }
+    };
 };
 
 export const Dashboard = connect(mapStateToProps, mapDispatchToProps)(DashboardComponent);
