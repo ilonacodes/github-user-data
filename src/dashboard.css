@@ -1,0 +1,9 @@
+input.error {
+    border-color: red;
+}
+
+button.outline {
+    background-color: #eee;
+    border: 1px solid #aaa;
+    color: #555;
+}
